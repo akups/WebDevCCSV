@@ -31,8 +31,7 @@ class App extends React.Component {
   state = {
     inputSphere: 0,
     results: [],
-    darkMode: false,
-    search: ""
+    darkMode: false
   };
 
   componentDidMount() {
@@ -40,15 +39,22 @@ class App extends React.Component {
     console.log(result.data);
   }
 
-  onSearch = inputSphere => {
+  onSearch = event => {
+    let inputSphere = event.target.inputSphere;
+    console.log(result.data);
+    console.log(inputSphere);
     let filteredResults = this.state.results.filter(element => {
-      // console.log(event.target.value);
-      if (element.maxSphere > inputSphere > element.minSphere) {
+      if (
+        element.maxSphere > event.target.inputSphere &&
+        element.minSphere < event.target.inputSphere
+      ) {
         return true;
       } else {
-        return null;
+        return false;
       }
     });
+    console.log(this.state.results);
+    console.log(filteredResults);
     this.setState({ results: filteredResults });
   };
 
