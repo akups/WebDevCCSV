@@ -35,18 +35,17 @@ class App extends React.Component {
     results: [],
     darkMode: false
   };
-
+  //1. When the page first opens, make it display all the products you can find under „result“ (imported from data.json).
   componentDidMount() {
     this.setState({ results: result.data });
     console.log(result.data);
   }
-
-  updateInputSphere = inputSphere => {
-    this.setState({
-      inputSphere: inputSphere
-    });
-  };
-
+  //   2. Finish the „findResults“ function to filter the „result".
+  // 	the function takes parameters and returns all the products that are within the range of this parameter.
+  // 	so it takes a value for the ’sphere’ and returns all the products where the value lies in between the maximum and minimum sphere
+  // 3. Trigger this function when clicking on the ’search’ button
+  //onSearch and filter combined in one function but repeated for each search button
+  //onSearch and filter for the sphere
   onSearch = target => {
     target.preventDefault();
     const { results, inputSphere } = this.state;
@@ -63,6 +62,7 @@ class App extends React.Component {
     this.setState({ results: filteredResults });
   };
 
+  //onSearch and filter for the cylinder
   onSearchCylinder = target => {
     target.preventDefault();
     const { results, inputCylinder } = this.state;
@@ -79,6 +79,7 @@ class App extends React.Component {
     this.setState({ results: filteredResults });
   };
 
+  //onSearch and filter for the addition
   onSearchAddition = target => {
     target.preventDefault();
     const { results, inputAddition } = this.state;
@@ -95,12 +96,17 @@ class App extends React.Component {
     this.setState({ results: filteredResults });
   };
 
+  //onChange for sphere
   onChange = (key, value) => {
     this.setState({ [key]: value });
   };
+
+  //onChange for cylinder
   onChangeCylinder = (key1, value1) => {
     this.setState({ [key1]: value1 });
   };
+
+  //onChange for addition
   onChangeAddition = (key2, value2) => {
     this.setState({ [key2]: value2 });
   };
