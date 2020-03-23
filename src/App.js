@@ -47,22 +47,6 @@ class App extends React.Component {
     });
   };
 
-  // onSearch = inputSphere => {
-  //   console.log(result.data);
-  //   console.log(inputSphere);
-  //   console.log(inputSphere.target.value);
-  //   console.log(inputSphere.target);
-  //   let filteredResults = this.state.results.filter(product => {
-  //     if (product.maxSphere >= inputSphere.target.value >= product.minSphere) {
-  //       return true;
-  //     }
-  //     return null;
-  //   });
-  //   console.log(this.state.results);
-  //   console.log(filteredResults);
-  //   this.setState({ results: filteredResults });
-  // };
-
   onSearch = target => {
     target.preventDefault();
     const { results, inputSphere } = this.state;
@@ -120,6 +104,7 @@ class App extends React.Component {
   onChangeAddition = (key2, value2) => {
     this.setState({ [key2]: value2 });
   };
+
   toggledarkMode = () => {
     this.setState({
       darkMode: !this.state.darkMode
