@@ -30,6 +30,8 @@ const theme = createMuiTheme({
 class App extends React.Component {
   state = {
     inputSphere: 0,
+    inputCylinder: 0,
+    inputAddition: 0,
     results: [],
     darkMode: false
   };
@@ -45,29 +47,69 @@ class App extends React.Component {
     });
   };
 
-  onSearch = inputSphere => {
-    console.log(result.data);
+  // onSearch = inputSphere => {
+  //   console.log(result.data);
+  //   console.log(inputSphere);
+  //   console.log(inputSphere.target.value);
+  //   console.log(inputSphere.target);
+  //   let filteredResults = this.state.results.filter(product => {
+  //     if (product.maxSphere >= inputSphere.target.value >= product.minSphere) {
+  //       return true;
+  //     }
+  //     return null;
+  //   });
+  //   console.log(this.state.results);
+  //   console.log(filteredResults);
+  //   this.setState({ results: filteredResults });
+  // };
+
+  onSearch = target => {
+    target.preventDefault();
+    const { results, inputSphere } = this.state;
     console.log(inputSphere);
-    console.log(inputSphere.target.value);
-    console.log(inputSphere.target);
-    let filteredResults = this.state.results.filter(product => {
-      if (product.maxSphere >= inputSphere.target.value >= product.minSphere) {
+    let filteredResults = results.filter(product => {
+      if (
+        product.maxSphere >= inputSphere &&
+        inputSphere >= product.minSphere
+      ) {
         return true;
       }
-      return null;
+      return false;
     });
-    console.log(this.state.results);
-    console.log(filteredResults);
     this.setState({ results: filteredResults });
   };
-  updateInputSphere = inputSphere => {
-    this.setState({
-      inputSphere: inputSphere
+
+  onSearchCylinder = target => {
+    target.preventDefault();
+    const { results, inputCylinder } = this.state;
+    console.log(inputCylinder);
+    let filteredResults = results.filter(product => {
+      if (
+        product.maxCylinder >= inputCylinder &&
+        inputCylinder >= product.minCylinder
+      ) {
+        return true;
+      }
+      return false;
     });
+    this.setState({ results: filteredResults });
   };
 
-  onSearchCylinder = () => {};
-  onSearchAddition = () => {};
+  onSearchAddition = target => {
+    target.preventDefault();
+    const { results, inputAddition } = this.state;
+    console.log(inputAddition);
+    let filteredResults = results.filter(product => {
+      if (
+        product.maxAddition >= inputAddition &&
+        inputAddition >= product.minAddition
+      ) {
+        return true;
+      }
+      return false;
+    });
+    this.setState({ results: filteredResults });
+  };
 
   onChange = (key, value) => {
     this.setState({ [key]: value });
@@ -102,7 +144,7 @@ class App extends React.Component {
               inputField={inputSphere}
               name="inputSphere"
               label="Cylinder"
-              onChange={this.onChange}
+              onChange={this.onChangeCylinder}
             />
             <SearchButton onSearch={this.onSearchCylinder} />
           </Grid>
@@ -111,7 +153,7 @@ class App extends React.Component {
               inputField={inputSphere}
               name="inputSphere"
               label="Addition"
-              onChange={this.onChange}
+              onChange={this.onChangeAddition}
             />
             <SearchButton onSearch={this.onSearchAddition} />
           </Grid>
