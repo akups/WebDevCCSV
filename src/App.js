@@ -126,7 +126,13 @@ class App extends React.Component {
     });
   };
   render() {
-    const { darkMode, inputSphere, results } = this.state;
+    const {
+      darkMode,
+      inputSphere,
+      inputCylinder,
+      inputAddition,
+      results
+    } = this.state;
     return (
       <ThemeProvider theme={theme}>
         <div className={darkMode ? "AppDark" : "AppLight"}>
@@ -141,8 +147,8 @@ class App extends React.Component {
           </Grid>
           <Grid className="searchField">
             <InputField
-              inputField={inputSphere}
-              name="inputSphere"
+              inputField={inputCylinder}
+              name="inputCylinder"
               label="Cylinder"
               onChange={this.onChangeCylinder}
             />
@@ -150,8 +156,8 @@ class App extends React.Component {
           </Grid>
           <Grid className="searchField">
             <InputField
-              inputField={inputSphere}
-              name="inputSphere"
+              inputField={inputAddition}
+              name="inputAddition"
               label="Addition"
               onChange={this.onChangeAddition}
             />
