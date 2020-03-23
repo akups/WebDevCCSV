@@ -61,7 +61,7 @@ class App extends React.Component {
     });
     this.setState({ results: filteredResults });
   };
-
+  //4. Implement 2 more search values ‚cylinder‘ and ‚addition‘, add search fields and integrate them in the ‚findResults‘ function
   //onSearch and filter for the cylinder
   onSearchCylinder = target => {
     target.preventDefault();
