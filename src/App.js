@@ -39,23 +39,31 @@ class App extends React.Component {
     console.log(result.data);
   }
 
-  onSearch = event => {
-    let inputSphere = event.target.inputSphere;
+  updateInputSphere = inputSphere => {
+    this.setState({
+      inputSphere: inputSphere
+    });
+  };
+
+  onSearch = inputSphere => {
     console.log(result.data);
     console.log(inputSphere);
-    let filteredResults = this.state.results.filter(element => {
-      if (
-        element.maxSphere > event.target.inputSphere &&
-        element.minSphere < event.target.inputSphere
-      ) {
+    console.log(inputSphere.target.value);
+    console.log(inputSphere.target);
+    let filteredResults = this.state.results.filter(product => {
+      if (product.maxSphere >= inputSphere.target.value >= product.minSphere) {
         return true;
-      } else {
-        return false;
       }
+      return null;
     });
     console.log(this.state.results);
     console.log(filteredResults);
     this.setState({ results: filteredResults });
+  };
+  updateInputSphere = inputSphere => {
+    this.setState({
+      inputSphere: inputSphere
+    });
   };
 
   onSearchCylinder = () => {};
@@ -64,11 +72,11 @@ class App extends React.Component {
   onChange = (key, value) => {
     this.setState({ [key]: value });
   };
-  onChangeCylinder = (key, value) => {
-    this.setState({ [key]: value });
+  onChangeCylinder = (key1, value1) => {
+    this.setState({ [key1]: value1 });
   };
-  onChangeAddition = (key, value) => {
-    this.setState({ [key]: value });
+  onChangeAddition = (key2, value2) => {
+    this.setState({ [key2]: value2 });
   };
   toggledarkMode = () => {
     this.setState({
